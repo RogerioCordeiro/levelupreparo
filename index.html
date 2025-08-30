@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <header class="header">
         <div class="container header-flex">
             <div class="logo">
-                <span class="logo-icon">🔧</span>
+                <span class="logo-icon">TF</span>
                 <span class="logo-text">TechFix Pro</span>
             </div>
             <nav class="nav">
@@ -40,6 +40,107 @@
         </nav>
         <div class="nav-mobile-backdrop" id="navMobileBackdrop"></div>
     </header>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMobile = document.getElementById('navMobile');
+        const navMobileBackdrop = document.getElementById('navMobileBackdrop');
+        const closeMobile = document.getElementById('closeMobile');
+
+        function openMenu() {
+            navMobile.classList.add('open');
+            navMobileBackdrop.classList.add('show');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.innerText = '×';
+        }
+
+        function closeMenu() {
+            navMobile.classList.remove('open');
+            navMobileBackdrop.classList.remove('show');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.innerText = '☰';
+        }
+
+        menuToggle.addEventListener('click', function () {
+            if (navMobile.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        closeMobile.addEventListener('click', closeMenu);
+        navMobileBackdrop.addEventListener('click', closeMenu);
+        navMobile.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        const contactForm = document.querySelector('.contact-form form');
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                nome: formData.get('nome'),
+                telefone: formData.get('telefone'),
+                email: formData.get('email'),
+                equipamento: formData.get('equipamento'),
+                problema: formData.get('problema')
+            };
+
+            console.log('Dados do formulário:', data);
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<span style="margin-right: 0.5rem;">⏳</span>Enviando...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = '<span style="margin-right: 0.5rem;">✅</span>Enviado com sucesso!';
+                submitBtn.style.backgroundColor = '#10b981';
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = '';
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .testimonial-card, .feature-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 
     <!-- Hero -->
     <section id="inicio" class="hero">
@@ -76,7 +177,7 @@
                     alt="Técnico especializado trabalhando em equipamento eletrônico">
                 <div class="hero-badge">
                     <div class="badge-title">Técnicos Certificados</div>
-                    <div class="badge-value">15+ Anos</div>
+                    <div class="badge-value">+5 Anos</div>
                 </div>
             </div>
         </div>
@@ -86,7 +187,6 @@
     <section id="servicos" class="services">
         <div class="container">
             <div class="section-title">
-                <span class="section-badge">Nossos Serviços</span>
                 <h2>Especialistas em Todas as <span class="text-primary">Categorias</span></h2>
                 <p>Oferecemos soluções completas para todos os tipos de equipamentos eletrônicos, com técnicos
                     especializados e peças de qualidade.</p>
@@ -194,7 +294,6 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-content">
-                    <span class="section-badge">Sobre a TechFix Pro</span>
                     <h2>15 Anos de <span class="text-primary">Experiência</span> e Confiança</h2>
                     <p>Fundada em 2009, a TechFix Pro nasceu da paixão por tecnologia e do compromisso em oferecer
                         soluções
@@ -263,65 +362,64 @@
     <section id="depoimentos" class="testimonials">
         <div class="container">
             <div class="section-title">
-                <span class="section-badge accent">Depoimentos</span>
                 <h2>O que Nossos <span class="text-primary">Clientes</span> Dizem</h2>
                 <p>A satisfação dos nossos clientes é nossa maior conquista. Veja o que eles têm a dizer sobre nossos
                     serviços.</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <img src="img/mulher-empres-ria-sorrindo.png" alt="Veronica" class="testimonial-img">
+                    <img src="img/mulher-empres-ria-sorrindo.png" alt="Maria Silva" class="testimonial-img">
                     <div class="testimonial-content">
                         <div class="testimonial-rating">★★★★★</div>
                         <blockquote>Excelente atendimento! Meu notebook estava com problemas há meses e eles resolveram
                             em 2 dias. Equipe muito profissional e preço justo.</blockquote>
-                        <div class="testimonial-author">Veronica</div>
+                        <div class="testimonial-author">Maria Silva <span>Empresária</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <img src="img/homem-designer-criativo.png" alt="Amanda" class="testimonial-img">
+                    <img src="img/homem-designer-criativo.png" alt="João Santos" class="testimonial-img">
                     <div class="testimonial-content">
                         <div class="testimonial-rating">★★★★★</div>
                         <blockquote>Precisava urgentemente do meu MacBook para um projeto. A TechFix Pro fez um
                             diagnóstico rápido e o reparo foi perfeito. Recomendo!</blockquote>
-                        <div class="testimonial-author">Amanda</div>
+                        <div class="testimonial-author">João Santos <span>Designer</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <img src="img/jovem-estudante-sorrindo.png" alt="Carolina" class="testimonial-img">
+                    <img src="img/jovem-estudante-sorrindo.png" alt="Ana Costa" class="testimonial-img">
                     <div class="testimonial-content">
                         <div class="testimonial-rating">★★★★★</div>
                         <blockquote>Quebrei a tela do meu celular e estava desesperada. Eles trocaram no mesmo dia e
                             ficou como novo. Atendimento nota 10!</blockquote>
-                        <div class="testimonial-author">Carolina</div>
+                        <div class="testimonial-author">Ana Costa <span>Estudante</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <img src="img/homem-engenheiro-profissional.png" alt="Pedro" class="testimonial-img">
+                    <img src="img/homem-engenheiro-profissional.png" alt="Carlos Oliveira" class="testimonial-img">
                     <div class="testimonial-content">
                         <div class="testimonial-rating">★★★★★</div>
                         <blockquote>Meu PlayStation estava superaquecendo. O diagnóstico foi preciso e o reparo
                             duradouro. Já são 8 meses funcionando perfeitamente.</blockquote>
-                        <div class="testimonial-author">Pedro</div>
+                        <div class="testimonial-author">Carlos Oliveira <span>Engenheiro</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <img src="img/mulher-professora-amig-vel.png" alt="Lucia" class="testimonial-img">
+                    <img src="img/mulher-professora-amig-vel.png" alt="Lucia Ferreira" class="testimonial-img">
                     <div class="testimonial-content">
                         <div class="testimonial-rating">★★★★★</div>
                         <blockquote>Tablet com problemas de touch. Atendimento educado, explicaram tudo detalhadamente e
                             o preço foi muito honesto. Voltarei sempre!</blockquote>
-                        <div class="testimonial-author">Lucia</div>
+                        <div class="testimonial-author">Lucia Ferreira <span>Professora</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Contato -->
     <section id="contato" class="contact">
         <div class="container">
             <div class="section-title">
-                <span class="section-badge">Entre em Contato</span>
                 <h2>Precisa de <span class="text-primary">Ajuda</span>?</h2>
                 <p>Nossa equipe está pronta para atender você. Entre em contato e receba um diagnóstico gratuito do seu
                     equipamento.</p>
@@ -363,7 +461,6 @@
                                 placeholder="Descreva o problema do seu equipamento..." required></textarea>
                         </div>
                         <button type="submit" class="btn-primary btn-lg" style="width: 100%;">
-                            <span style="margin-right: 0.5rem;">📤</span>
                             Enviar Solicitação
                         </button>
                     </form>
@@ -421,11 +518,12 @@
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <span class="logo-icon">🔧</span>
+                <span class="logo-icon">TF</span>
                 <span class="logo-text">TechFix Pro</span>
                 <p>Especialistas em manutenção de equipamentos eletrônicos há mais de 15 anos. Cuidamos dos seus
                     equipamentos com excelência e dedicação.</p>
@@ -470,7 +568,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 TechFix Pro. Todos os direitos reservados. Desenvolvido com tecnologia e cuidado.</p>
+            <p>© 2025 TechFix Pro. Todos os direitos reservados.</p>
+            <p>© Desenvolvido por <i><strong>Rogerio Cordeiro</strong></i> com tecnologia e cuidado.</p>
         </div>
     </footer>
 
