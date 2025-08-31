@@ -951,6 +951,7 @@ body {
 .footer-social {
     display: flex;
     gap: 1rem;
+
 }
 
 .footer-social a {
@@ -962,6 +963,11 @@ body {
 
 .footer-social a:hover {
     color: var(--sidebar-primary);
+}
+
+.footer-social img {
+    width: 24px;
+    height: 24px;
 }
 
 .footer-links h4 {
