@@ -39,6 +39,18 @@
     --shadow-strong: 0 24px 96px rgba(0, 0, 0, 0.5);
 }
 
+/* Reset e controle específico para imagens de logo */
+img.logo-image {
+    height: 55px !important;
+    width: auto !important;
+    max-width: 180px !important;
+    max-height: 55px !important;
+    object-fit: contain !important;
+    display: block !important;
+    position: static !important;
+    z-index: auto !important;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -100,6 +112,8 @@ body {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex-shrink: 0;
+    max-width: 220px;
 }
 
 .logo-icon {
@@ -116,6 +130,15 @@ body {
     height: 3rem;
     box-shadow: var(--shadow-soft);
     transition: all 0.3s ease;
+}
+
+.logo-image {
+    height: 70px;
+    width: auto;
+    max-width: 200px;
+    max-height: 70px;
+    object-fit: contain;
+    display: block;
 }
 
 .logo-icon:hover {
@@ -339,9 +362,8 @@ body {
     display: block;
 }
 
-/* Hero Section with Dramatic Gradient */
 .hero {
-    padding-top: 6rem;
+    padding-top: 10rem;
     padding-bottom: 5rem;
     background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(142, 142, 147, 0.15) 0%, transparent 60%),
         linear-gradient(180deg, var(--background) 0%, var(--muted) 100%);
@@ -482,7 +504,6 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* Modern Section Styles with Apple Aesthetics */
 .services {
     padding: 6rem 0;
     background: var(--background);
@@ -1129,9 +1150,39 @@ body {
     }
 }
 
+.header .logo-image {
+    height: 100px !important;
+    width: auto !important;
+    max-width: 180px !important;
+    max-height: 100px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+.footer .logo-image {
+    height: 45px !important;
+    width: auto !important;
+    max-width: 150px !important;
+    max-height: 45px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .logo-image {
+        height: 40px;
+        max-width: 150px;
+    }
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 0 1rem;
+    }
+
+    .logo-image {
+        height: 32px;
+        max-width: 120px;
     }
 
     .hero {

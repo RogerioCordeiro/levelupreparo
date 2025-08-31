@@ -4,6 +4,23 @@
 
 Level Up Reparo é uma página web institucional desenvolvida para uma assistência técnica especializada em manutenção e reparo de equipamentos eletrônicos. O site apresenta uma identidade visual moderna, inspirada no design Apple, com foco em clareza, acessibilidade e experiência do usuário. O objetivo é transmitir confiança, profissionalismo e facilitar o contato entre clientes e a empresa.
 
+## 🌐 Acesso ao Site
+
+O site está disponível online através dos seguintes links:
+
+- **Netlify:** [https://levelupreparo.netlify.app/](Level UP Reparo)
+- **GitHub Pages:** [https://rogeriocordeiro.github.io/techfixpro/](Level Up Reparo)
+
+## 📸 Capturas de Tela
+
+### Seção Principal (Hero)
+
+![Seção inicial do site](parcial-screenshot.png)
+
+### Página Completa
+
+![Visualização completa do site](full-screenshot.png)
+
 ## Funcionalidades e Seções
 
 O site é composto por diversas seções, cada uma cuidadosamente planejada para apresentar informações relevantes e facilitar a navegação:
