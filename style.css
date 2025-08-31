@@ -1010,6 +1010,12 @@ body {
     margin: 0;
 }
 
+.footer-bottom a {
+    color: var(--gradient-accent);
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+
 
 
 
