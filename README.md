@@ -7,9 +7,18 @@ Level Up Reparo é uma página web institucional desenvolvida para uma assistên
 ## 🌐 Acesso ao Site
 
 O site está disponível online através dos seguintes links:
-
-- **Netlify:** [https://levelupreparo.netlify.app/](Level UP Reparo)
-- **GitHub Pages:** [https://rogeriocordeiro.github.io/techfixpro/](Level Up Reparo)
+<div id="badges">
+  <a href="https://levelupreparo.netlify.app/">
+    <img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white"/>
+    <p>Netlify</p>
+  </a>
+</div>
+<div id="badges">
+  <a href="https://rogeriocordeiro.github.io/levelupreparo">
+    <img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white"/>
+    <p>GitHub Pages</p>
+  </a>
+</div> 
 
 ## 📸 Capturas de Tela
 
