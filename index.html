@@ -140,6 +140,56 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+        function animateCounter(element, target, suffix = '') {
+            let start = 0;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    if (suffix === '%') {
+                        element.textContent = Math.floor(start) + suffix;
+                    } else {
+                        element.textContent = '+' + Math.floor(start).toLocaleString();
+                    }
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    if (suffix === '%') {
+                        element.textContent = target + suffix;
+                    } else {
+                        element.textContent = '+' + target.toLocaleString();
+                    }
+                }
+            }
+            updateCounter();
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const count = parseInt(element.dataset.count);
+                    const currentText = element.textContent.trim();
+                    if (count && (currentText === '0%' || currentText === '0')) {
+                        if (currentText === '0%') {
+                            animateCounter(element, count, '%');
+                        } else {
+                            animateCounter(element, count);
+                        }
+
+                        statsObserver.unobserve(element);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        document.querySelectorAll('[data-count]').forEach(el => {
+            statsObserver.observe(el);
+        });
     </script>
 
     <!-- Hero -->
@@ -155,20 +205,24 @@
                 </div>
                 <div class="hero-stats">
                     <div>
-                        <div class="stat-value">98%</div>
+                        <div class="stat-value" data-count="98">0%</div>
                         <div class="stat-label">Taxa de Sucesso</div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class="stat-value">24h</div>
                         <div class="stat-label">Diagnóstico</div>
-                    </div>
+                    </div> -->
                     <div>
                         <div class="stat-value">6 meses</div>
                         <div class="stat-label">Garantia</div>
                     </div>
                     <div>
-                        <div class="stat-value">5000+</div>
+                        <div class="stat-value" data-count="53450">0</div>
                         <div class="stat-label">Clientes</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" data-count="123980">0</div>
+                        <div class="stat-label">Reparos</div>
                     </div>
                 </div>
             </div>
@@ -295,7 +349,7 @@
             <div class="about-grid">
                 <div class="about-content">
                     <h2>5 anos de <span class="text-primary">Experiência</span> e Confiança</h2>
-                    <p>Fundada em 2009, a Level Up Reparo nasceu da paixão por tecnologia e do compromisso em oferecer
+                    <p>Fundada em 2020, a Level Up Reparo nasceu da paixão por tecnologia e do compromisso em oferecer
                         soluções
                         de qualidade para nossos clientes. Nossa equipe de técnicos certificados possui vasta
                         experiência em
@@ -308,7 +362,7 @@
                     </div>
                     <div class="about-stats">
                         <div>
-                            <div class="stat-value" style="color: var(--primary);">5000+</div>
+                            <div class="stat-value" style="color: var(--accent);">123980</div>
                             <div class="stat-label">Equipamentos Reparados</div>
                         </div>
                         <div>
@@ -579,6 +633,52 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                // Animar 98%
+                const percentElement = document.querySelector('[data-count="98"]');
+                if (percentElement) {
+                    let count = 0;
+                    const timer = setInterval(() => {
+                        count++;
+                        percentElement.textContent = count + '%';
+                        if (count >= 98) {
+                            clearInterval(timer);
+                        }
+                    }, 20);
+                }
+                const clientsElement = document.querySelector('[data-count="53450"]');
+                if (clientsElement) {
+                    let count = 0;
+                    const target = 53450;
+                    const increment = target / 100;
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(timer);
+                        }
+                        clientsElement.textContent = '+' + Math.floor(count).toLocaleString('pt-BR');
+                    }, 20);
+                }
+                const reparosElement = document.querySelector('[data-count="123980"]');
+                if (reparosElement) {
+                    let count = 0;
+                    const target = 123980;
+                    const increment = target / 100;
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(timer);
+                        }
+                        reparosElement.textContent = '+' + Math.floor(count).toLocaleString('pt-BR');
+                    }, 20);
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 
 </html>
