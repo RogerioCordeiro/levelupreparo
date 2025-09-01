@@ -29,7 +29,7 @@
     --sidebar-border: #424245;
 
     /* Apple-inspired gradients and glass effects */
-    --glass-bg: rgba(29, 29, 31, 0.72);
+    --glass-bg: rgba(29, 29, 31, 0.98);
     --glass-border: rgba(255, 255, 255, 0.1);
     --gradient-primary: linear-gradient(135deg, #8e8e93 0%, #a1a1a6 100%);
     --gradient-secondary: linear-gradient(135deg, #30d158 0%, #8e8e93 100%);
@@ -88,7 +88,6 @@ body {
     text-wrap: pretty;
 }
 
-/* Header with Glass Morphism Effect */
 .header {
     position: fixed;
     top: 0;
@@ -286,8 +285,8 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    width: 80vw;
-    max-width: 320px;
+    width: 60vw;
+    max-width: 240px;
     height: 100vh;
     box-shadow: var(--shadow-strong);
     padding: 2rem 1.5rem;
@@ -1043,11 +1042,6 @@ body {
     text-decoration: none;
 }
 
-
-
-
-
-/* Modern Responsive Design */
 @media (max-width: 1024px) {
 
     .hero-grid,
@@ -1098,7 +1092,7 @@ body {
     }
 
     .hero {
-        padding-top: 6rem;
+        padding-top: 10rem;
         padding-bottom: 2rem;
     }
 
@@ -1186,7 +1180,7 @@ body {
     }
 
     .hero {
-        padding-top: 5rem;
+        padding-top: 7rem;
         padding-bottom: 1.5rem;
     }
 
